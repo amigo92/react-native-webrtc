@@ -24,6 +24,11 @@
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, RTCPeerConnection *> *peerConnections;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, RTCMediaStream *> *localStreams;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, RTCMediaStreamTrack *> *localTracks;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *bytesNow;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *bytesBefore;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *tsBefore;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *tsNow;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSNumber *> *bitRate;
 
 - (RTCMediaStream*)streamForReactTag:(NSString*)reactTag;
 
