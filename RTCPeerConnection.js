@@ -55,7 +55,7 @@ const DEFAULT_SDP_CONSTRAINTS = {
 const DEFAULT_PC_CONSTRAINTS = {
   mandatory: {},
   optional: [
-    { DtlsSrtpKeyAgreement: true },
+    { DtlsSrtpKeyAgreement: true,googCpuOveruseThreshold: 85,googCpuUnderuseThreshold: 55,googCpuOveruseEncodeUsage: true,googCpuOveruseDetection:true,googScreencastMinBitrate:true,googPayloadPadding: true,googHighStartBitrate: 0 },
   ],
 };
 
