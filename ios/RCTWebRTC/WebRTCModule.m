@@ -16,11 +16,18 @@
 
 @interface WebRTCModule ()
 
+@property(nonatomic, strong) dispatch_queue_t workerQueue;
+
 @end
 
 @implementation WebRTCModule
 
 @synthesize bridge = _bridge;
+
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
 
 - (void)dealloc
 {
@@ -41,22 +48,32 @@
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        _peerConnectionFactory = [RTCPeerConnectionFactory new];
-        //    [RTCPeerConnectionFactory initializeSSL];
-        
-        _peerConnections = [NSMutableDictionary new];
-        _localStreams = [NSMutableDictionary new];
-        _localTracks = [NSMutableDictionary new];
-        _bytesNow = [NSMutableDictionary new];
-        _bytesNow = [NSMutableDictionary new];
-        _bytesBefore = [NSMutableDictionary new];
-        _tsBefore = [NSMutableDictionary new];
-        _tsNow = [NSMutableDictionary new];
-        _bitRate = [NSMutableDictionary new];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    RTCDefaultVideoDecoderFactory *decoderFactory
+      = [[RTCDefaultVideoDecoderFactory alloc] init];
+    RTCDefaultVideoEncoderFactory *encoderFactory
+      = [[RTCDefaultVideoEncoderFactory alloc] init];
+    _peerConnectionFactory
+      = [[RTCPeerConnectionFactory alloc] initWithEncoderFactory:encoderFactory
+                                                  decoderFactory:decoderFactory];
+
+    _peerConnections = [NSMutableDictionary new];
+    _localStreams = [NSMutableDictionary new];
+    _localTracks = [NSMutableDictionary new];
+      _bytesNow = [NSMutableDictionary new];
+      _bytesNow = [NSMutableDictionary new];
+      _bytesBefore = [NSMutableDictionary new];
+      _tsBefore = [NSMutableDictionary new];
+      _tsNow = [NSMutableDictionary new];
+      _bitRate = [NSMutableDictionary new];
+
+    dispatch_queue_attr_t attributes =
+    dispatch_queue_attr_make_with_qos_class(DISPATCH_QUEUE_SERIAL,
+                                            QOS_CLASS_USER_INITIATED, -1);
+    _workerQueue = dispatch_queue_create("WebRTCModule.queue", attributes);
+  }
+  return self;
 }
 
 - (RTCMediaStream*)streamForReactTag:(NSString*)reactTag
@@ -78,7 +95,7 @@ RCT_EXPORT_MODULE();
 
 - (dispatch_queue_t)methodQueue
 {
-    return dispatch_get_main_queue();
+  return _workerQueue;
 }
 
 @end
