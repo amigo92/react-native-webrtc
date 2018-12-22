@@ -12,9 +12,9 @@ const {WebRTCModule} = NativeModules;
 // native side consume string eventually
 const DEFAULT_VIDEO_CONSTRAINTS = {
   mandatory: {
-    minWidth: '1280',
-    minHeight: '720',
-    minFrameRate: '30',
+    minWidth: '640',
+    minHeight: '360',
+    minFrameRate: '25',
   },
   facingMode: "environment",
   optional: [],

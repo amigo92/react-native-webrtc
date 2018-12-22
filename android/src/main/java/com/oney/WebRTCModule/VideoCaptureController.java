@@ -24,9 +24,9 @@ public class VideoCaptureController {
      * Default values for width, height and fps (respectively) which will be
      * used to open the camera at.
      */
-    private static final int DEFAULT_WIDTH  = 1280;
-    private static final int DEFAULT_HEIGHT = 720;
-    private static final int DEFAULT_FPS    = 30;
+    private static final int DEFAULT_WIDTH  = 640;
+    private static final int DEFAULT_HEIGHT = 360;
+    private static final int DEFAULT_FPS    = 25;
 
     /**
      * Values for width, height and fps (respectively) which will be

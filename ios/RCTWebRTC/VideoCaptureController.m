@@ -1,9 +1,9 @@
 
 #import "VideoCaptureController.h"
 
-static int DEFAULT_WIDTH  = 1280;
-static int DEFAULT_HEIGHT = 720;
-static int DEFAULT_FPS    = 30;
+static int DEFAULT_WIDTH  = 640;
+static int DEFAULT_HEIGHT = 360;
+static int DEFAULT_FPS    = 25;
 
 
 @implementation VideoCaptureController {
