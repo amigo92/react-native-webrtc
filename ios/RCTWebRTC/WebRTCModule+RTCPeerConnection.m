@@ -591,12 +591,6 @@ RCT_EXPORT_METHOD(getMonitor:(nonnull NSString *)trackID
 }
 
 
-- (void)peerConnection:(nonnull RTCPeerConnection *)peerConnection didRemoveIceCandidates:(nonnull NSArray<RTCIceCandidate *> *)candidates {
-  // TODO
-}
-
-
-
 /**
  * Parses the constraint keys and values of a specific JavaScript object into
  * a specific <tt>NSMutableDictionary</tt> in a format suitable for the
